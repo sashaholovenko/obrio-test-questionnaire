@@ -36,7 +36,7 @@ Each JSON file should adhere to the following structure:
     "Female": "chooseRelationshipStatus",
     "default": "howItWorks"
   },
-   previous: {
+   "previous": {
    "chooseRelationshipStatus": "chooseRelationshipStatus",
    "default": "chooseRelationshipStatus"
 }
