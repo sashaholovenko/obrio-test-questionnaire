@@ -19,6 +19,7 @@ The application reads JSON files located in the `public/data/questionnaires` dir
 `/question/[questionnaireId]/[id]`
 
 ## JSON Structure
+App is fully running based on JSON config
 Each JSON file should adhere to the following structure:
 
 ```json
@@ -32,8 +33,13 @@ Each JSON file should adhere to the following structure:
   "screenType": "options",
   "next": {
     "Male": "chooseRelationshipStatus",
-    "Female": "chooseRelationshipStatus"
-  }
+    "Female": "chooseRelationshipStatus",
+    "default": "howItWorks"
+  },
+   previous: {
+   "chooseRelationshipStatus": "chooseRelationshipStatus",
+   "default": "chooseRelationshipStatus"
+}
 }
 ```
 
@@ -44,15 +50,10 @@ Each JSON file should adhere to the following structure:
 4. screenType: Defines the type of page (currently supports "info" and "questions").
 5. next: Routes for the next page based on the selected answer.
 6. referencId: ID of the previous answer for "info" pages.
+7. previous for routing in the page instead of router back() it give us more flexibility
+8. default keys is keys when we have only one option e.g. only one screen for routing
 
 ## Conditional Text
 
 Conditional Text
-You can insert dynamic values based on previous answers using the syntax `{someValue}` in your text. This will be replaced with the corresponding property from the answers store.
-
-For conditional text, use the format:
-
-css
-Копіювати код
-`{that have children's (haveChildrens["Yes"])}`
-This structure means that the phrase `that have children's` will only be displayed if the `haveChildrens` question was answered with `Yes.`
+Used formatjs
