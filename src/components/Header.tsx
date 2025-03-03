@@ -7,15 +7,19 @@ enum ScreenTypes {
     Question= "question"
 }
 
-const Header = ({ screenType, onBack }: {screenType: string, onBack: () => void}) => {
+const Header = ({ screenType, onBack, isLast, onRestart}: {screenType: string, onBack: () => void, onRestart: () => void, isLast: boolean}) => {
     const isInfoScreen  = screenType === ScreenTypes.Info
 
     return (
         <header className="flex justify-between items-center p-4">
         <Image src={isInfoScreen ? '/main-logo-white.svg' : '/main-logo.svg'} alt='logo' width={15} height={15}/>
-        <button onClick={onBack} className="absolute left-10">
-            <ArrowIcon color={isInfoScreen ? "white" : 'black'}/>
-        </button>
+            {isLast ? <button className="absolute left-10 bg-gray-500 rounded p-1" onClick={onRestart}>
+                Restart
+                </button> :
+                <button onClick={onBack} className="absolute left-10 ">
+                    <ArrowIcon color={isInfoScreen ? "white" : 'black'}/>
+                </button>
+            }
     </header>
     )
 };

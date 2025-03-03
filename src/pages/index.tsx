@@ -1,6 +1,7 @@
 import {useRouter} from "next/router";
 import {useDispatch} from "react-redux";
 import {setQuestionary} from "@/store/surveySlice";
+import {IntlProvider} from "react-intl";
 
 
 

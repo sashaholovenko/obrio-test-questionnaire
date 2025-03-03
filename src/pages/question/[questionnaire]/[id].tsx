@@ -3,15 +3,13 @@ import fs from 'fs';
 import path from 'path';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
-import {setAnswer, setFromLocalStorage} from '@/store/surveySlice';
-import { RootState } from '@/store/store';
-import {useCallback, useEffect} from "react";
+import { useDispatch } from 'react-redux';
+import {useCallback, useEffect, useMemo, useState} from "react";
 import QuestionContent from "@/components/content/QuestionContent";
 import InfoContent from "@/components/content/InfoContent";
 import Header from "@/components/Header";
 import AnswersContent from "@/components/content/AnswersContent";
-import jsonFile from '@/data/data.json'
+import jsonFile from '@/data/questionary1.json'
 
 
 export interface Question {
@@ -33,79 +31,69 @@ interface Props {
 type ScreenType = 'options' | 'info' | 'answers'
 
 const QuestionPage = ({ question }: Props) => {
-    const dispatch = useDispatch();
     const router = useRouter();
     const { questionnaire, id } = router.query;
-    const answers = useSelector((state: RootState) => state.survey.answers);
+    const [localAnswers, setLocalAnswers] = useState<Record<string, string>>({})
 
     useEffect(() => {
         const answersLocal = localStorage.getItem('answers')
         if (answersLocal) {
-            dispatch(setFromLocalStorage(JSON.parse(answersLocal)));
+            setLocalAnswers(JSON.parse(answersLocal))
         }
-    }, []);
+    }, [router, question, questionnaire]);
 
     const handleOptionClick = useCallback((option: string) => {
-        localStorage.setItem('answers', JSON.stringify({...answers, [question.id]: option, previousQuestion: question.id}))
-        dispatch(setAnswer({ questionId: question.id, answer: option }));
+        const localAnswers = localStorage.getItem('answers')
+        localStorage.setItem('answers', JSON.stringify({...JSON.parse(localAnswers as string), [question.id]: option, previousQuestion: question.id}))
 
         const nextQuestionId = question.next.default || question.next[option];
 
-
         if (nextQuestionId) {
             router.push(`/question/${questionnaire}/${nextQuestionId}`);
-        } else {
-            // router.push('/final');
-            router.push(`/question/${questionnaire}/${'final'}`);
         }
-    }, [router, question, dispatch, questionnaire]);
+    }, [router, question, questionnaire]);
 
     const handleInfoClick = useCallback(() => {
-        const referenceAnswer = answers[question.referenceId!];
+        const referenceAnswer = localAnswers[question.referenceId!];
 
         const nextQuestionId = question.next[referenceAnswer];
 
         if (nextQuestionId) {
             router.push(`/question/${questionnaire}/${nextQuestionId}`);
-        } else {
-            // router.push('/final');
         }
-    }, [answers, question, router, questionnaire]);
+    }, [localAnswers, question, router, questionnaire]);
 
-    const handleBack = () => {
-        const answersLocal = JSON.parse(localStorage.getItem('answers') as string)
-        console.log(id)
+    const handleBack = useCallback(() => {
+        const answersLocal: Record<string, string | undefined> = JSON.parse(localStorage.getItem('answers') as string)
         const currentQuestion = jsonFile.questions.find(q => q.id === id);
         if (!currentQuestion?.previous) return;
 
-        const previousId = typeof (currentQuestion).previous === "string"
-            ? currentQuestion.previous
-            : currentQuestion.previous[answersLocal.previousQuestion as string];
+        const previousId = currentQuestion.previous?.default || (currentQuestion.previous as Record<string, string>)[answersLocal?.previousQuestion as string];
+
 
         if (previousId) {
             router.push(`/question/${questionnaire}/${previousId}`);
         } else {
             router.back(); // fallback
         }
-    }
+    }, [id, questionnaire, router])
 
+    const handleRestart = useCallback(() => {
+        localStorage.removeItem('answers');
+        router.push(`/`);
+    }, [router])
 
-    const replaceDynamicValues = useCallback((text: string) => {
-        const replacedText = text.replace(/{([^{}]+)(?:\s\{([^}]+)\["([^}]+)"\])?}/g, (_, key, conditionKey, conditionValue) => {
-            if (conditionKey && conditionValue) {
-                return answers[conditionKey] === conditionValue ? key : '';
-            }
-
-            return answers[key] || `{${key}}`;
-        });
-
-        return replacedText;
-    }, [answers])
+    const questionsData = useMemo(() => {
+        return jsonFile.questions.reduce((accumulator: Record<string, string>, current: Record<string, string>) => {
+            accumulator[current.id] = current.question;
+            return accumulator;
+        }, {});
+    }, [])
 
     const renderOptions: Record<ScreenType, JSX.Element> = {
-        options: <QuestionContent question={question} answers={answers} onOptionClick={handleOptionClick} replaceDynamicValues={replaceDynamicValues}/>,
+        options: <QuestionContent question={question} answers={localAnswers} onOptionClick={handleOptionClick}/>,
         info: <InfoContent question={question} onNext={handleInfoClick} />,
-        answers: <AnswersContent answers={answers} questionsData={jsonFile} />,
+        answers: <AnswersContent answers={localAnswers} questionsData={questionsData} />,
     }
 
     const colorScheme: Record<string, string> = {
@@ -116,7 +104,7 @@ const QuestionPage = ({ question }: Props) => {
 
     return (
         <div className="flex flex-col items-center p-6 w-full h-full overflow-auto" style={{background: colorScheme[question.screenType]}}>
-            <Header screenType={question.screenType} onBack={() => handleBack()} />
+            <Header screenType={question.screenType} onBack={() => handleBack()} onRestart={handleRestart} isLast={!question.next}/>
             <div className="w-[330px] xs:w-full">
                 {renderOptions[question.screenType as ScreenType]}
             </div>
@@ -125,13 +113,13 @@ const QuestionPage = ({ question }: Props) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const questionnairesDir = path.join(process.cwd(), 'public/data/questionnaires');
+    const questionnairesDir = path.join(process.cwd(), 'src/data');
     const files = fs.readdirSync(questionnairesDir);
 
-    const paths = files.flatMap(file => {
+    const paths = files.flatMap((file) => {
         const filePath = path.join(questionnairesDir, file);
         const jsonData = fs.readFileSync(filePath, 'utf8');
-        const data = JSON.parse(jsonData); 
+        const data = JSON.parse(jsonData);
 
         return data.questions.map((question: Question) => ({
             params: {
@@ -146,12 +134,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const { questionnaire, id } = params as { questionnaire: string; id: string }; // Destructure parameters
-    const filePath = path.join(process.cwd(), 'public/data/questionnaires', `${questionnaire}.json`);
-    const jsonData = fs.readFileSync(filePath, 'utf8');
-    const data = JSON.parse(jsonData);
-
-    const question = data.questions.find((q: Question) => q.id === id) || null;
+    const { questionnaire, id } = params as { questionnaire: string; id: string };
+    // const filePath = path.join(process.cwd(), 'public/data/questionnaires', `${questionnaire}.json`);
+    // const jsonData = fs.readFileSync(filePath, 'utf8');
+    // const data = JSON.parse(jsonData);
+    const data = JSON.parse(JSON.stringify(jsonFile))
+    const question = jsonFile.questions.find((q: Question) => q.id === id) || null;
 
     if (!question) {
         return {

@@ -251,7 +251,10 @@
     {
       "id": "final",
       "screenType": "answers",
-      "next": ""
+      "next": "",
+      "previous": {
+        "hearAboutUs": "hearAboutUs"
+      }
     }
   ]
 }
