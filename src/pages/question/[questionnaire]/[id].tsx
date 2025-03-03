@@ -3,7 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
 import {useCallback, useEffect, useMemo, useState} from "react";
 import QuestionContent from "@/components/content/QuestionContent";
 import InfoContent from "@/components/content/InfoContent";
@@ -42,12 +41,22 @@ const QuestionPage = ({ question }: Props) => {
         }
     }, [router, question, questionnaire]);
 
+
     const handleOptionClick = useCallback((option: string) => {
-        const localAnswers = localStorage.getItem('answers')
-        localStorage.setItem('answers', JSON.stringify({...JSON.parse(localAnswers as string), [question.id]: option, previousQuestion: question.id}))
+        const localStoreAnswers = localStorage.getItem('answers');
+        const parsedAnswers = localStoreAnswers ? JSON.parse(localStoreAnswers) : {};
+
+        const history: string[] = JSON.parse(localStorage.getItem('history') || '[]');
+        history.push(question.id);
+
+        localStorage.setItem('answers', JSON.stringify({
+            ...parsedAnswers,
+            [question.id]: option,
+        }));
+
+        localStorage.setItem('history', JSON.stringify(history));
 
         const nextQuestionId = question.next.default || question.next[option];
-
         if (nextQuestionId) {
             router.push(`/question/${questionnaire}/${nextQuestionId}`);
         }
@@ -64,19 +73,39 @@ const QuestionPage = ({ question }: Props) => {
     }, [localAnswers, question, router, questionnaire]);
 
     const handleBack = useCallback(() => {
-        const answersLocal: Record<string, string | undefined> = JSON.parse(localStorage.getItem('answers') as string)
-        const currentQuestion = jsonFile.questions.find(q => q.id === id);
-        if (!currentQuestion?.previous) return;
+        const history: string[] = JSON.parse(localStorage.getItem('history') || '[]');
+        const answersLocal: Record<string, string | undefined> = JSON.parse(localStorage.getItem('answers') || '{}');
 
-        const previousId = currentQuestion.previous?.default || (currentQuestion.previous as Record<string, string>)[answersLocal?.previousQuestion as string];
+        if (history.length <= 1) {
+            router.back(); // fallback
+            return;
+        }
+
+        history.pop();
+        const previousQuestionId = history[history.length - 1];
+
+        const previousAnswer = answersLocal[previousQuestionId];
+        const previousQuestion = jsonFile.questions.find(q => q.id === previousQuestionId);
+
+        if (!previousQuestion) {
+            router.back(); // fallback
+            return;
+        }
+
+        const previousId =
+            previousAnswer && typeof previousAnswer === 'string'
+                ? (previousQuestion.previous as Record<string, string | undefined>)?.[previousAnswer]
+                : previousQuestion.previous?.default;
 
 
-        if (previousId) {
+        if (previousId && previousId !== id) {
+            localStorage.setItem('history', JSON.stringify(history));
             router.push(`/question/${questionnaire}/${previousId}`);
         } else {
             router.back(); // fallback
         }
-    }, [id, questionnaire, router])
+    }, [id, questionnaire, router]);
+
 
     const handleRestart = useCallback(() => {
         localStorage.removeItem('answers');
@@ -84,11 +113,12 @@ const QuestionPage = ({ question }: Props) => {
     }, [router])
 
     const questionsData = useMemo(() => {
-        return jsonFile.questions.reduce((accumulator: Record<string, string>, current: Record<string, string>) => {
-            accumulator[current.id] = current.question;
+        return jsonFile.questions.reduce<Record<string, string>>((accumulator, current) => {
+            accumulator[current.id] = current.question as string;
             return accumulator;
         }, {});
-    }, [])
+    }, []);
+
 
     const renderOptions: Record<ScreenType, JSX.Element> = {
         options: <QuestionContent question={question} answers={localAnswers} onOptionClick={handleOptionClick}/>,
@@ -134,12 +164,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const { questionnaire, id } = params as { questionnaire: string; id: string };
-    // const filePath = path.join(process.cwd(), 'public/data/questionnaires', `${questionnaire}.json`);
-    // const jsonData = fs.readFileSync(filePath, 'utf8');
-    // const data = JSON.parse(jsonData);
-    const data = JSON.parse(JSON.stringify(jsonFile))
-    const question = jsonFile.questions.find((q: Question) => q.id === id) || null;
+    const { id } = params as { questionnaire: string; id: string };
+    const question = jsonFile.questions.find((q) => q.id === id) || null;
 
     if (!question) {
         return {

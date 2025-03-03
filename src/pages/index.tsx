@@ -1,18 +1,16 @@
 import {useRouter} from "next/router";
-import {useDispatch} from "react-redux";
-import {setQuestionary} from "@/store/surveySlice";
-import {IntlProvider} from "react-intl";
+import {useEffect} from "react";
 
 
 
 export default function Home() {
   const router = useRouter();
-    const dispatch = useDispatch();
 
-
+    useEffect(() => {
+        localStorage.clear()
+    }, []);
 
   const startQuestionary = () => {
-      dispatch(setQuestionary('questionary1'));
       router.push('/question/questionary1/chooseGender')
   }
 

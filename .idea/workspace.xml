@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5983e95-651c-497d-a5d0-c67d80090fbf" name="Changes" comment="feat: fixes">
+    <list default="true" id="b5983e95-651c-497d-a5d0-c67d80090fbf" name="Changes" comment="feat: new logic of config">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/data/questionnaires/questionary1.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/data/questionnaires/questionary1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/content/AnswersContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/content/AnswersContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/content/QuestionContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/content/QuestionContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/questionary1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/final.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/data/questionnaires/questionary1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/data/questionnaires/testquestions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/question/[questionnaire]/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/question/[questionnaire]/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/store.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/surveySlice.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +124,7 @@
       <workItem from="1728208692495" duration="1326000" />
       <workItem from="1740910496862" duration="20177000" />
       <workItem from="1740998504241" duration="244000" />
-      <workItem from="1740998768642" duration="15006000" />
+      <workItem from="1740998768642" duration="21089000" />
     </task>
     <task id="LOCAL-00001" summary="feat: project">
       <option name="closed" value="true" />
@@ -201,7 +198,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740998976744</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="feat: new logic of config">
+      <option name="closed" value="true" />
+      <created>1741014632890</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1741014632890</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +221,7 @@
     <MESSAGE value="refactor: renaming" />
     <MESSAGE value="feat: update README.md" />
     <MESSAGE value="feat: fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: fixes" />
+    <MESSAGE value="feat: new logic of config" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: new logic of config" />
   </component>
 </project>
