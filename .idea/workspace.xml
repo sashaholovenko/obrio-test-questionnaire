@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b5983e95-651c-497d-a5d0-c67d80090fbf" name="Changes" comment="feat: fixes" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;sashaholovenko&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/sashaholovenko/questionnaire-obrio.git&quot;,
+    &quot;accountId&quot;: &quot;a5aec005-42e2-4747-9bb6-93c8b668e68e&quot;
+  }
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2mxvPOAq2qDeZNwnJlXjTPk1kfR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "E:/questionnaire-obrio",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "settings.editor.selected.configurable": "configurable.group.appearance",
+    "ts.external.directory.path": "E:\\questionnaire-obrio\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.intellij.reactbuddy.reactComponents" value="false" />
+        <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
+        <entry key="com.intellij.reactbuddy.storybook" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\WebstormProjects\untitled2\questionnaire-obrio\src\data" />
+      <recent name="C:\Users\Admin\WebstormProjects\untitled2\questionnaire-obrio\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\WebstormProjects\untitled2\questionnaire-obrio\src\components\content" />
+      <recent name="C:\Users\Admin\WebstormProjects\untitled2\questionnaire-obrio\src\components\ui" />
+      <recent name="C:\Users\Admin\WebstormProjects\untitled2\questionnaire-obrio\public" />
+      <recent name="C:\Users\Admin\WebstormProjects\untitled2\questionnaire-obrio\src\components\info-content" />
+      <recent name="C:\Users\Admin\WebstormProjects\untitled2\questionnaire-obrio\src\components\answers-content" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23339.15" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b5983e95-651c-497d-a5d0-c67d80090fbf" name="Changes" comment="" />
+      <created>1728031016809</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728031016809</updated>
+      <workItem from="1728031020548" duration="350000" />
+      <workItem from="1728031557251" duration="8832000" />
+      <workItem from="1728208692495" duration="1326000" />
+      <workItem from="1740910496862" duration="20177000" />
+      <workItem from="1740998504241" duration="244000" />
+      <workItem from="1740998768642" duration="309000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat: project">
+      <option name="closed" value="true" />
+      <created>1728031783973</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728031783973</updated>
+    </task>
+    <task id="LOCAL-00002" summary="refactor: code refactor">
+      <option name="closed" value="true" />
+      <created>1728036923751</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728036923751</updated>
+    </task>
+    <task id="LOCAL-00003" summary="refactor: memorizing">
+      <option name="closed" value="true" />
+      <created>1728037987626</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1728037987626</updated>
+    </task>
+    <task id="LOCAL-00004" summary="refactor: refactor">
+      <option name="closed" value="true" />
+      <created>1728038247183</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728038247183</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat: making questionary value in store">
+      <option name="closed" value="true" />
+      <created>1728038736130</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1728038736130</updated>
+    </task>
+    <task id="LOCAL-00006" summary="refactor: refactor">
+      <option name="closed" value="true" />
+      <created>1728038780156</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1728038780156</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactor: renaming">
+      <option name="closed" value="true" />
+      <created>1728038888896</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1728038888896</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: update README.md">
+      <option name="closed" value="true" />
+      <created>1728040118205</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1728040118205</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: fixes">
+      <option name="closed" value="true" />
+      <created>1740998976744</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1740998976744</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: project" />
+    <MESSAGE value="refactor: code refactor" />
+    <MESSAGE value="refactor: memorizing" />
+    <MESSAGE value="feat: making questionary value in store" />
+    <MESSAGE value="refactor: refactor" />
+    <MESSAGE value="refactor: renaming" />
+    <MESSAGE value="feat: update README.md" />
+    <MESSAGE value="feat: fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: fixes" />
+  </component>
+</project>
